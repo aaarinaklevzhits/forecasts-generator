@@ -1,11 +1,28 @@
-/* Генерация предсказания должна происходить при клике на кнопку «предсказать судьбу» */
-const containerForItem = document.querySelector(".forecasts")
 const button = document.querySelector(".forecast-btn");
+const containerForItems = document.querySelector(".forecasts")
 
-button.addEventListener('click', ());
+/* Генерация предсказания должна происходить при клике на кнопку «предсказать судьбу» */
+button.addEventListener('click', );
 
 /* Заранее заготовь 3-5 предсказаний и в зависимости от того, как лягут карты судьбы (или что скажет Math.random) показывай их пользователю */
+const numberOfPrediction = getRandom(1, 3);
 
+let prediction = '';
+let probability = getRandom(0, 100);
+switch (numberOfPrediction) {
+    case 1:
+        prediction = "Тебя ждут хорошие новости!";
+        break;
+    case 2:
+        prediction = "Тебя ждет неожиданный сюрприз!";
+        break;
+    case 3:
+        prediction = "Тебя ждет приятная встреча!";
+        break;
+    default:
+        prediction = "Попробуй позже :(";
+        break;
+}
 /* Подставляй текст нового предсказания в .current-forecast h1 */
 
 /* Показывай процент вероятности, с которым предсказание сбудется — в верстке это .current-forecast p */
@@ -13,8 +30,8 @@ button.addEventListener('click', ());
 /* Данный процент также нужно генерировать автоматически, он может принимать значения от 0 до 100% */
 
 /* Совет: заведи функцию-хелпер, которая будет заниматься только генерацией данных в диапазоне от min до max и используй ее где нужно */
-function getRandomInt(min, max) {
-    return Math.ceil(Math.random() * (max - min)) + min;
+function getRandom(min, max) {
+    return Math.ceil((Math.random() * (max - min)) + min);
 }
 
 /* При генерации нового предсказания старое предсказание должно добавляться в начало списка «Мои предсказания» — .forecasts  */
@@ -30,12 +47,3 @@ function addNewForecastByTemplate(title, chance) {
 
     return newPrediction;
 }
-
-const firstPredictionItem = addNewForecastByTemplate('Тебя ждет хороший день!', getRandomInt(0, 100));
-containerForItem.append(predictionItem);
-
-const secondPredictionItem = addNewForecastByTemplate('У тебя все получится!', getRandomInt(0, 100));
-containerForItem.append(predictionItem);
-
-const thirdPredictionItem = addNewForecastByTemplate('Все будет хорошо!', getRandomInt(0, 100));
-containerForItem.append(predictionItem);
